@@ -1,0 +1,43 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>Autoübersicht</title>
+</head>
+<body>
+	<h1>{Name vom Auto}</h1>
+		<img src= "../img/audi.jpg" width="350" height="230" align="right" alt="audi">
+	<h2>Technische Daten</h2>
+		<ul>
+			<li>Leistung: {PS}{KW}</li>
+			<li>Getriebe: {Automatik}{Manuell}</li>
+			<li>Top-Speed: {kmh}</li>
+			<li>Kraftstoff: {Benzin}{Diesel}</li>
+		</ul>
+		
+	<h2>Ausstattung</h2>
+		<ul>
+			<li>Sitzplätze: {Anzahl Sitze}</li>
+			<li>Türen: {Anzahl Türen}</li>
+			<li>Klimaanlage: {ja/nein}</li>
+		</ul>
+		
+	<br>
+	
+	<form>
+		<p>
+			<label for="standort">Standort auswählen</label>
+			<input id ="standort">
+	
+			<label for="mietbeginn">Starttermin</label>
+			<input id="mietbeginn" type="date">
+
+			<label for="mietende">Endtermin</label>
+			<input id="mietende" type="date">
+			
+			<button type="submit">Verfügbarkeit prüfen</button>
+		</p>
+	</form>
+	
+</body>
+</html>
