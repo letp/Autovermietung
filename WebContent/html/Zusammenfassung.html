@@ -1,0 +1,46 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+		<title>Zusammenfassung</title>
+	</head>
+	
+	<body>
+		<h1>Zusammenfassung</h1>
+		<h2>{Marke}</h2>
+		<img src= "../img/audi.jpg" width="350" height="230" align="right" alt="audi">
+		
+		<h3>Fahrzeugdetails</h3>
+		<div>
+			<ul>
+				<li>Leistung: {PS}{KW}</li>
+				<li>Getriebe: {Automatik}{Manuell}</li>
+				<li>Top-Speed: {kmh}</li>
+				<li>Kraftstoff: {Benzin}{Diesel}</li>
+				<li>Sitzplätze: {Anzahl Sitze}</li>
+				<li>Türen: {Anzahl Türen}</li>
+				<li>Klimaanlage: {ja/nein}</li>
+			</ul>
+		</div>
+		
+		<h4>Abholung</h4>
+			<p>{abholdatum}<br>
+			{standort}</p>
+			
+		<h4>Rückgabe</h4>
+			<p>{rückgabedatum}<br>
+			{standort}</p>
+		
+		<h3>Gesamtpreis</h3>
+		<div>
+			<p>Ausleihe in Tagen: {tage}</p>
+			<p>Preis pro Tag: {preis}</p>
+			<p>Gesamtpreis: {gesamtpreis}</p>
+		</div>
+		
+		<form action="Login.jsp" methon="">
+			<button type="submit" name="submit" value="submit">Daten bestätigen</button>
+		</form>
+		
+	</body>
+</html>
