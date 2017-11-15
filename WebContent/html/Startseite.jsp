@@ -102,7 +102,7 @@
 	
 		<div class="slider fade" align="center">
 			<div class="bildnummer">1 / 3</div>
-			<img src="welcome.jpg" style="width:1200px;height:400px">
+			<img src="Auto.jpg" style="width:800px;height:400px">
 			<div class="text">Welcome</div>
 		</div>	
 		<div class="slider fade" align="center" >
@@ -128,27 +128,23 @@
 </div>
 
 <h2 class=beliebteArtikel role="heading">
-    <span>Beliebteste Artikel</span>
+    <span>Beliebteste Autos</span>
    		</h2>
    		<hr/>
    		<figure>
    		
-   		<figure class="bild">
-   			<img src="Buch.png" width="200" height="200" alt="Auto1"><br>
-   			<a href="../../BuchServlet?param1=${beliebt.get(0).isbn}" >${beliebt.get(0).titel}</a> 
+   		<figure class="bild" width="250" height="250">
+   			<img src="bmw.jpg" href="CarView.html" width="250" height="170" alt="Auto1"><br>
+   			<a>Auto1</a> 
    		</figure>
    		
    		<figure class="bild">
-   			<img src="Buch.png" width="200" height="200" alt="Auto2"><br>
-   			<a href="../../BuchServlet?param1=${beliebt.get(1).isbn}" >${beliebt.get(1).titel}</a> 
+   			<img src="bmw.jpg" href="CarView.html" width="250" height="170" alt="Auto2"><br>
+   			<a href="CarView.html" >Auto2</a> 
    		</figure>
    		<figure class="bild">
-   			<img src="Buch.png" width="200" height="200" alt="Auto3"><br>
-   			<a href="../../BuchServlet?param1=${beliebt.get(2).isbn}" >${beliebt.get(2).titel}</a> 
-   		</figure>
-   		<figure class="bild">
-   			<img src="Buch.png" width="200" height="200" alt="Auto4"><br>
-   			<a href="../../BuchServlet?param1=${beliebt.get(3).isbn}" >${beliebt.get(3).titel}</a> 
+   			<img src="bmw.jpg" href="CarView.html" width="250" height="170" alt="Auto3"><br>
+   			<a href="CarView.html" >Auto3</a>  
    		</figure>
 	</figure>
 	
