@@ -99,7 +99,7 @@ color: red;
 </style>
 </head>
 <body>
-<jsp:include page="Navigation.jsp"></jsp:include>
+<%@ include file="Navigation.jsp" %>
 	
 	<br>
 	<div class="konto">
@@ -132,7 +132,7 @@ color: red;
 		    <input type="text" name="vorname" value="${account.vorname}" required>
 		    <br>
 		    <label>Email</label> <br>
-		    <input type="text"  name="email" value="${account.email}" required>
+		    <input type="email"  name="email" value="${account.email}" required>
 		    <br>
 		    <label>Straße </label> <br>
 		    <input type="text" name="strasse" value="${account.strasse}" required>
@@ -172,6 +172,16 @@ color: red;
 		</form>
 		
 	</div>
+	</div>
+	<div class="konto">
+	<h1>Meine Autos</h1>
+	<c:forEach items="${autos}" var="a">
+	<br>
+	<img src="bmw.jpg" width="75" height="75" alt="${a.bezeichnung}">
+	<a href="#">${a.bezeichnung}</a>
+	<br><hr>
+	</c:forEach>
+	
 	</div>
 	
 	<footer class="foot">
