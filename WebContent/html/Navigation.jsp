@@ -7,6 +7,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+<link rel="stylesheet" type="text/css" href="nav.css">
 </head>
 <body>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
@@ -14,7 +15,7 @@
 	 <ul class="nav">   
         <li><a href="Startseite.jsp">Startseite</a></li>
 		<li class=kategorie>
-			<a href="#" class="drop">Kategorien</a> 
+			<a href="#" class="drop">Marken</a> 
 			<div class=dropdown_kategorie>
 				<c:forEach items="${kategorien}" var="k">
 				<a href="../../KategorieServlet?param=${k}">${k}</a>
@@ -23,44 +24,27 @@
 		</li>
    		<li>
 			<form method="post" action="../../SucheServlet">
-			    <input id="suche1" name="suche1" placeholder="Titel oder ISBN">
+			    <input id="suche1" name="suche1" placeholder="Standort">
 			    <button type="submit" id="account" type="button">Suchen</button> 
 			</form>
 		</li>
-		         <%
-			if((Integer)session.getAttribute("logged") != null){
-			    if((Integer)session.getAttribute("logged") == 1){
-			%>
-			
-			<li class="right"><a id="konto" href="../../LogoutServlet">Logout</a></li>
-			<%  
-			}
-			}
-			%>
-        <li class="right"><a href="Warenkorb.jsp" >Warenkorb</a></li>
         
-        	 <%
-			if((Integer)session.getAttribute("logged") != null){
-			    if((Integer)session.getAttribute("logged") == 1){
-			%>
-			
-			<li class="right"><a id="konto" href="Konto.jsp">Mein Konto</a></li>
-			<%  
-			}
-			}
-			%>
-        	 <%
-			if((Integer)session.getAttribute("logged") == null || (Integer)session.getAttribute("logged") == 0){
-			%>
-			
-			<li class="right"><a id="konto" href="Login.jsp">Login</a></li>
-			<%  
-			}
-		
-			%>
-        
-        
-        <li class="right"><a href="Verkaufen.jsp">Verkaufen</a></li>
+
+        <c:choose>
+			<c:when test="${logged > 0}">
+				<li class="right"><a id="konto" href="../../LogoutServlet">Logout</a></li>
+			</c:when>
+			<c:otherwise>
+				<li class="right"><a id="konto" href="Login.jsp">Login</a></li>
+			</c:otherwise>
+		</c:choose>
+		<c:choose>
+			<c:when test="${logged > 0}">
+				<li class="right"><a id="konto" href="Konto.jsp">Mein Konto</a></li>
+			</c:when>
+		</c:choose>
+        <li class="right"><a href="Zusammenfassung.html" >Warenkrob</a></li>
+        <li class="right"><a href="Vermieten.jsp">Vemieten</a></li>
 	</ul>
 </nav>
 </body>
