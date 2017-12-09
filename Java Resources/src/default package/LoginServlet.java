@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
 
 import javax.annotation.Resource;
 import javax.servlet.RequestDispatcher;
@@ -59,9 +60,12 @@ public class LoginServlet extends HttpServlet {
 	                   form.setStrasse(rs.getString("strasse"));
 	                   form.setHnr(rs.getString("hausnummer"));
 	                   form.setStadt(rs.getString("stadt"));
-	                   form.setPlz(rs.getString("postleitzahl"));
+	                   form.setPlz(rs.getString("plz"));
+	                   form.setId(rs.getInt("id"));
 	                   session.setAttribute("account", form);
 	                   session.setAttribute("logged", 1);
+	                   ArrayList<Auto> autos = findAutos(form.getId());
+	                   session.setAttribute("autos", autos);
 	                   final RequestDispatcher dispatcher = request.getRequestDispatcher("home/html/Konto.jsp");
 	                   dispatcher.forward(request, response);
 	               }else{
@@ -76,7 +80,27 @@ public class LoginServlet extends HttpServlet {
 	             throw new ServletException(ex.getMessage());
 	        }
 	}
-	    
+	
+	public ArrayList<Auto> findAutos(int id) throws ServletException{
+        ResultSet rs = null;
+        ArrayList<Auto> autos = new ArrayList<Auto>();
+        try(Connection con = ds.getConnection();
+                PreparedStatement p = con.prepareStatement("SELECT * FROM autos WHERE vermieterID = '"+id+"'")){
+                rs = p.executeQuery();
+                while(rs.next()){
+                        Auto auto = new Auto();
+                        auto.setBezeichnung(rs.getString("bezeichnung"));
+                        auto.setId(rs.getInt("id"));
+                        auto.setMarke(rs.getString("marke"));
+                        autos.add(auto);
+                }
+         } catch (Exception ex) {
+              // TODO Auto-generated catch block
+              throw new ServletException(ex.getMessage());
+         }
+        return autos;
+	}
+	
 	 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
