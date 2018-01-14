@@ -8,9 +8,30 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" type="text/css" href="nav.css">
+
 </head>
-<body>
+<style>
+        .js_enabled #cookie-message {
+            display: none;
+        }
+</style>
+<script>
+    document.body.className = document.body.className + " js_enabled";
+    
+    function cookie() {
+    	
+        if(navigator.cookieEnabled == false){        
+        	document.getElementById("cooki").innerHTML = "Bitte aktivieren Sie Cookies!";
+        }
+    }
+</script>
+<noscript>
+	Bitte aktivieren Sie JavaScript!
+</noscript>
+<body onload="cookie()">
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
+<p id="cooki"></p>
 <nav>	
 	 <ul class="nav">   
         <li><a href="Startseite.jsp">Startseite</a></li>
@@ -25,7 +46,7 @@
    		<li>
 			<form method="post" action="../../SucheServlet">
 			    <input id="suche1" name="suche1" placeholder="Standort">
-			    <button type="submit" id="account" type="button">Suchen</button> 
+			    <button type="submit" id="suche" type="button">Suchen</button> 
 			</form>
 		</li>
         
