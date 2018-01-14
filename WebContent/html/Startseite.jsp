@@ -10,15 +10,6 @@
 	
 	<link rel="stylesheet" type="text/css" href="nav.css"> 
 	<style>
-	
-		
-		input{
-		height: 20px;
-		width: 300px;
-	    margin: 8px 0;
-	    box-sizing: border-box;
-	    padding: 12px;
-		}
 		
 		<!-- style für slider -->
 		* {box-sizing:border-box}
@@ -87,10 +78,11 @@
 
 	</style>
 	
+	
 </head>
-<body> 
+<body onload="getneu()"> 
 
-<jsp:include page="Navigation.jsp"></jsp:include>
+<%@ include file="Navigation.jsp" %>
 	<header>
 		<h1 role="heading" align="center">
 			Autovermietung
@@ -128,19 +120,19 @@
 </div>
 
 <h2 class=beliebteArtikel role="heading">
-    <span>Beliebteste Autos</span>
+    <span>Aktuelle Autos</span>
    		</h2>
    		<hr/>
    		<figure>
    		
-   		<figure class="bild" width="250" height="250">
+   		<figure class="bild" id="neu1" width="250" height="250">
    			<img src="bmw.jpg" href="CarView.html" width="250" height="170" alt="Auto1"><br>
-   			<a>Auto1</a> 
+   			<a id="neu"></a> 
    		</figure>
    		
    		<figure class="bild">
    			<img src="bmw.jpg" href="CarView.html" width="250" height="170" alt="Auto2"><br>
-   			<a href="CarView.html" >Auto2</a> 
+   			<a href="CarView.html" >${neu.bezeichnung}</a> 
    		</figure>
    		<figure class="bild">
    			<img src="bmw.jpg" href="CarView.html" width="250" height="170" alt="Auto3"><br>
@@ -164,6 +156,9 @@
 	<script>
 	
 	
+		document.addEventListener("DOMContentLoaded", getneu);
+		
+	
 		var slideIndex = 1;
 		showSlides(slideIndex);
 		
@@ -185,7 +180,19 @@
 		      slides[i].style.display = "none";  
 		  }
 		  slides[slideIndex-1].style.display = "block";  
-	}
+		}
+		
+		function getneu(){
+			var xmlhttp = new HXMLHttpRequest();
+			xmlhttp.onreadystatechange = function(){
+				console.log("Callback reached with status " + xmlhttp.status + " and ready State " + xmlhttp.readyState);
+				if(xmlhttp.readyState == 4 && xmlhttp.status == 200){
+					document.getElementById("neu").innerHTML = xmlhttp.responseText;
+				}
+			}
+			xmlhttp.open("GET", "NeuServlet", true);
+			xmlhttp.send();
+		}
 
 	</script>
 </body>
