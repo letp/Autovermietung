@@ -1,14 +1,42 @@
+import java.io.Serializable;
 
-public class Auto {
+public class Auto implements Serializable {
 
+	private static final long serialVersionUID = 1L;
+	private int id;
 	private String marke;
-	private String bezeichnung;
+	private String modell;
 	private String typ;
 	private String kraftstoff;
 	private String getriebe;
 	private int ps;
-	private int kw;
-	private int topspeed;
+	private String karroserie;
+	private Standort standort;
+	
+	public Auto() {
+		
+	}
+	
+	public Auto(String marke) {
+		super();
+		this.marke = marke;
+	}
+	
+	public int getId() {
+		return id;
+	}
+	
+	public void setId(int id) {
+		this.id = id;
+	}
+	
+	public String getKarroserie() {
+		return karroserie;
+	}
+	
+	public void setKarroserie(String karroserie) {
+		this.karroserie = karroserie;
+	}
 	
 	public String getMarke() {
 		return marke;
@@ -16,11 +44,11 @@ public class Auto {
 	public void setMarke(String marke) {
 		this.marke = marke;
 	}
-	public String getBezeichnung() {
-		return bezeichnung;
+	public String getModell() {
+		return modell;
 	}
-	public void setBezeichnung(String bezeichnung) {
-		this.bezeichnung = bezeichnung;
+	public void setModell(String modell) {
+		this.modell = modell;
 	}
 	public String getTyp() {
 		return typ;
@@ -45,19 +73,13 @@ public class Auto {
 	}
 	public void setPs(int ps) {
 		this.ps = ps;
-	}
-	public int getKw() {
-		return kw;
-	}
-	public void setKw(int kw) {
-		this.kw = kw;
-	}
-	public int getTopspeed() {
-		return topspeed;
-	}
-	public void setTopspeed(int topspeed) {
-		this.topspeed = topspeed;
+	}	
+	public Standort getStandort() {
+		return standort;
 	}
 	
+	public void setStandort(Standort standort) {
+		this.standort = standort;
+	}
 	
 }
