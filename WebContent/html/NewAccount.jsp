@@ -6,49 +6,28 @@
 <head>
 <base href="${pageContext.request.requestURI}" />
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<base href="${pageContext.request.requestURI}" />
 <title>Account</title>
-<link rel="stylesheet" type="text/css" href="login.css">
+<link rel="stylesheet" type="text/css" href="../css/Login.css">
 
-<script>
-
-function check() {
-	  if (document.getElementById("passwort").value ==
-	    document.getElementById("passwort2").value) {
-	    document.getElementById("message").style.color = "green";
-	    document.getElementById("message").innerHTML = "matching";
-	  } else {
-	    document.getElementById("message").style.color = "red";
-	    document.getElementById("message").innerHTML = "not matching";
-	  }
-	}
-</script>
 </head>
 <body>
-
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <div class="login">
 <form method="post" action="../../AccountServlet">
-	    <%
-	if((Integer)session.getAttribute("pwfalsch") != null){
-	    if((Integer)session.getAttribute("pwfalsch") == 1){
-	%>
-	<br>
-	<a class = "rot">Passwörter stimmen nicht überein!</a>
-	<%  
-	}
-	}
-	%>
-	<%
+
 	
-	if((Integer)session.getAttribute("vorhanden") != null){
-	    if((Integer)session.getAttribute("vorhanden") == 1){
-	%>
-	<br>
-	<a class = "rot">Email Adresse bereits vergeben!</a>
-	<%  
-	}
-	}
-	%>
+	 <c:choose>
+		<c:when test="${pwfalsch > 0}">
+			<br>
+			<a class = "rot">Passwörter stimmen nicht überein!</a>
+		</c:when>
+	</c:choose>
+	<c:choose>
+		<c:when test="${vorhanden > 0}">
+			<br>
+			<a class = "rot">Email Adresse bereits vergeben!</a>
+		</c:when>
+	</c:choose>
 	<h1>Neuer Account</h1>
     <label>Name <br></label>
     <input type="text" name="name" id="name" required autofocus>
@@ -57,7 +36,7 @@ function check() {
     <input type="text" name="vorname" required>
     <br>
     <label>Email</label> <br>
-    <input type="text"  name="email" required>
+    <input type="email"  name="email" required>
     <br>
     <label>Straße </label> <br>
     <input type="text" name="strasse" required>
@@ -75,10 +54,10 @@ function check() {
 	<br>
     <label>Passwort </label>
     <br>
-    <input type="password" name="passwort" onkeyup="check()" required>
+    <input type="password" name="passwort" required>
 	<br>
     <label>Wiederhole Passwort</label> <br>
-    <input type="password" name="passwort2" onkeyup="check()" required>
+    <input type="password" name="passwort2" required>
     <span id="message"></span>
 	<br>
 	<br>
@@ -87,9 +66,6 @@ function check() {
     <br>
 </form>
 </div>      
-    <a
-    	href="#"> ABG
-    </a>
 
 </body>
 </html>
