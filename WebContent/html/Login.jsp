@@ -7,9 +7,10 @@
 <base href="${pageContext.request.requestURI}" />
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Login</title>
-<link rel="stylesheet" type="text/css" href="../../login.css">
+<link rel="stylesheet" type="text/css" href="../css/Login.css">
 </head>
 <body>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 <div class="login">
 
@@ -17,17 +18,18 @@
     <div class="container">
 
     	<h2>Login</h2><br>
-    	    <%
-	if((Integer)session.getAttribute("logfalsch") != null){
-	    if((Integer)session.getAttribute("logfalsch") == 1){
-	%>
+
+	    <c:choose>
+			<c:when test="${logfalsch == 1}">
+				<a class = "rot">Passwort oder Email falsch!</a><br>
+				<br>
+			</c:when>
+			<c:otherwise>
 	
-	<a class = "rot">Passwort oder Email falsch!</a><br>
-	<br>
-	<%  
-	}
-	}
-	%>
+			</c:otherwise>
+		</c:choose>
+	
+	
 	    <label> Email </label><br>
 	    <input type="text" placeholder="Email" name="email" required><br>
 	
@@ -38,7 +40,7 @@
 	    <button type="submit">Login!</button><br>
     </div> 
     <br>
-    <a href="Account.jsp"> Noch kein Konto? Jetzt registrieren!</a>
+    <a href="NewAccount.jsp"> Noch kein Konto? Jetzt registrieren!</a>
 </form>
 </div>
 </body>
