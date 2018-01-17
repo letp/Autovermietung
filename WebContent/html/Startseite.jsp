@@ -30,16 +30,5 @@
 			</c:otherwise>
 		</c:choose>
 
-	<footer class="foot">
-	<br>
-	Student Book Store 2017
-	<br>
-	<a href="Verkaufen.jsp">Buch verkaufen</a>
-	<br>
-	<a href="Login.jsp">Login</a>
-	<br>
-	<a href="Account.jsp">Registrieren</a>
-	<br>
-	</footer>
 </body>
 </html>
