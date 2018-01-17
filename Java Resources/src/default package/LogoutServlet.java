@@ -40,6 +40,7 @@ public class LogoutServlet extends HttpServlet {
 	    ArrayList<Auto> waren = new ArrayList<Auto>();
         session.setAttribute("waren", waren); 
         session.setAttribute("warenZahl", 0); 
+        session.invalidate();
         final RequestDispatcher dispatcher = request.getRequestDispatcher("home/html/Startseite.jsp");
         dispatcher.forward(request, response);
 	}
