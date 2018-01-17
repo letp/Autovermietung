@@ -52,30 +52,52 @@ public class VermietenServlet extends HttpServlet {
         Auto form = new Auto();
         String[] generatedkeys = new String[] {"id"};
         
-        form.setBezeichnung(request.getParameter("bezeichnung"));
+        form.setModell(request.getParameter("bezeichnung"));
         form.setGetriebe(request.getParameter("getriebe"));
         form.setKraftstoff(request.getParameter("kraftstoff"));
         form.setMarke(request.getParameter("marke"));
         form.setPs(request.getParameter("ps"));
-        form.setTopspeed(request.getParameter("speed"));
-        form.setTyp(request.getParameter("typ"));
+        form.setKarosserie(request.getParameter("karosserie"));
+        form.setErstzulassung(request.getParameter("erst"));
+        form.setPreis(request.getParameter("preis"));
+        form.setSitzplaetze(request.getParameter("sitzplaetze"));
+        form.setStandort(request.getParameter("standort"));
+        form.setTueren(request.getParameter("tueren"));
+        
         Part file = request.getPart("image");
+        
+        try (ByteArrayOutputStream baos = new ByteArrayOutputStream();
+                InputStream in = file.getInputStream() ){
+            int i = 0;
+            while((i = in.read()) != -1){
+                baos.write(i);
+            }
+            form.setBild(baos.toByteArray());
+            baos.flush();
+        } catch(IOException ex){
+            throw new ServletException(ex.getMessage());
+        }
         
         //eingeloggten User holen für Anbieter id
         Account anbieter = (Account) session.getAttribute("account");
         
         try(Connection con = ds.getConnection();
                 
-                PreparedStatement p = con.prepareStatement("INSERT INTO autos (getriebe, marke, bezeichnung, typ, kraftstoff, ps, speed, vermieterID) VALUES (?,?,?,?,?,?,?,?)",generatedkeys)){
+                PreparedStatement p = con.prepareStatement("INSERT INTO autos (getriebe, marke, modell, karosserie, kraftstoff, ps, vermieterID, bild,sitzplaetze, tueren, standort, erstzulassung, preis) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)",generatedkeys)){
                 
                 p.setString(1, form.getGetriebe());
                 p.setString(2, form.getMarke());
-                p.setString(3, form.getBezeichnung());
-                p.setString(4, form.getTyp());
+                p.setString(3, form.getModell());
+                p.setString(4, form.getKarosserie());
                 p.setString(5, form.getKraftstoff());
                 p.setString(6, form.getPs());
-                p.setString(7, form.getTopspeed());
-                p.setInt(8, anbieter.getId());
+                p.setInt(7, anbieter.getId());
+                p.setBytes(8, form.getBild());
+                p.setString(9, form.getSitzplaetze());
+                p.setString(10, form.getTueren());
+                p.setString(11, form.getStandort());
+                p.setString(12, form.getErstzulassung());
+                p.setString(13, form.getPreis());
                 
                 p.executeUpdate();
 
@@ -85,20 +107,10 @@ public class VermietenServlet extends HttpServlet {
                 }
                 
                 
-                try (ByteArrayOutputStream baos = new ByteArrayOutputStream();
-                        InputStream in = file.getInputStream() ){
-                    int i = 0;
-                    while((i = in.read()) != -1){
-                        baos.write(i);
-                    }
-                    form.setBild(baos.toByteArray());
-                    baos.flush();
-                } catch(IOException ex){
-                    throw new ServletException(ex.getMessage());
-                }
-                ArrayList<Auto> autos = findAutos(form.getId());
+                
+                ArrayList<Auto> autos = findAutos(anbieter.getId());
                 session.setAttribute("autos", autos);
-                final RequestDispatcher dispatcher = request.getRequestDispatcher("home/html/CarView.html");
+                final RequestDispatcher dispatcher = request.getRequestDispatcher("home/html/CarView.jsp");
                 dispatcher.forward(request, response);
                 
          } catch (Exception ex) {
@@ -114,11 +126,12 @@ public class VermietenServlet extends HttpServlet {
 	        ResultSet rs = null;
 	        ArrayList<Auto> autos = new ArrayList<Auto>();
 	        try(Connection con = ds.getConnection();
-	                PreparedStatement p = con.prepareStatement("SELECT * FROM autos WHERE vermieterID = '"+id+"'")){
+	                PreparedStatement p = con.prepareStatement("SELECT * FROM autos INNER JOIN accounts On autos.vermieterID = accounts.id WHERE accounts.id = ?")){
+                    p.setInt(1, id);
 	                rs = p.executeQuery();
 	                while(rs.next()){
 	                        Auto auto = new Auto();
-	                        auto.setBezeichnung(rs.getString("bezeichnung"));
+	                        auto.setModell(rs.getString("modell"));
 	                        auto.setId(rs.getInt("id"));
 	                        auto.setMarke(rs.getString("marke"));
 	                        autos.add(auto);
