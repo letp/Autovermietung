@@ -20,8 +20,20 @@
 		    <label>Bezeichnung</label> <br>
 		    <input type="text" name="bezeichnung" required>
 		    <br>
-		    <label>Typ</label> <br>
-		    <input type="text"  name="typ" required>
+		    <label>Karosserie</label> <br>
+		    <input type="text"  name="karosserie" required>
+		    <br>
+		    <label>Erstzulassung</label> <br>
+		    <input type="text"  name="erst" required>
+		    <br>
+		    <label>Türen</label><br>
+		    <input type="Number" name="tueren" required>
+		    <br>
+		    <label>Sitzplätze</label><br>
+		    <input type="Number" name="sitzplaetze" required>
+		    <br>
+		    <label>Standort</label><br>
+		    <input type="text" name="standort" required>
 		    <br>
 		    <label>Kraftstoff</label> <br>
 		    <select name="kraftstoff">
@@ -39,14 +51,15 @@
 		    <label>PS</label><br>
 		    <input type="Number" name="ps" required>
 		    <br>
-		    <label>Topspeed</label><br>
-			<input type="Number" name="speed" required>
-			<br>
 			<label>Bild</label>
-			<input type="file" name="image" id="image" accept="image/*" >
+			<input type="file" name="image" id="image" accept="image/*"  required>
+		    <br>
+		    <label>Preis</label><br>
+		    <input type="Number" name="preis" required>
 		    <br>
 		    <button type="submit" id="newcar" type="button">Auto anbieten!</button> 
 		    <br>
+		    
 		    
 		</c:when>
 		<c:otherwise>
