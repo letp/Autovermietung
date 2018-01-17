@@ -6,199 +6,108 @@
 <head>
 <base href="${pageContext.request.requestURI}" />
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Startseite</title>
-	
-	<link rel="stylesheet" type="text/css" href="nav.css"> 
-	<style>
-	
-		
-		input{
-		height: 20px;
-		width: 300px;
-	    margin: 8px 0;
-	    box-sizing: border-box;
-	    padding: 12px;
-		}
-		
-		<!-- style für slider -->
-		* {box-sizing:border-box}
-		
-		.slideshow-news {
-			  
-			  position: relative;
-			  margin: auto;
-			}
-			
-			.slider {
-			    display: none;
-			}
-		
-		.prev, .next {
-		  cursor: pointer;
-		  position: absolute;
-		  top: 50%;
-		  width: auto;
-		  margin-top: -22px;
-		  padding: 16px;
-		  color: white;
-		  font-weight: bold;
-		  font-size: 18px;
-		  transition: 0.6s ease;
-		  border-radius: 0 3px 3px 0;
-		}
-		.next {
-		  right: 0;
-		  border-radius: 3px 0 0 3px;
-		}
-		
-		.prev:hover, .next:hover {
-		  background-color: rgba(0,0,0,0.8);
-		}
-		.text {
-		  color: #f2f2f2;
-		  font-size: 15px;
-		  padding: 8px 12px;
-		  position: absolute;
-		  bottom: 8px;
-		  width: 100%;
-		  text-align: center;
-		}
-		
-		.bildnummer {
-		  color: #f2f2f2;
-		  font-size: 12px;
-		  padding: 8px 12px;
-		  position: absolute;
-		  top: 0;
-		}
-		
-		figure{
-			  margin: 0;
-			}
-			
-			figure.bild{
-			  display: inline-block;
-			  padding: 10px;
-			  width: 250px;
-			  hight: 250px;
-			  border: 1px solid gainsboro;
-			}
-		
+<title>Insert title here</title>
 
-	</style>
-	
+<link rel="stylesheet" type="text/css" href="../css/Konto.css">
+
 </head>
-<body> 
-
+<body>
 <%@ include file="Navigation.jsp" %>
-	<header>
-		<h1 role="heading" align="center">
-			Autovermietung
-		</h1>
-	</header>
 	
-	<!--  vgl. https://www.w3schools.com/howto/howto_js_slideshow.asp -->
-	<div class=slideshow-news>
+	<br>
+	<div class="konto">
+	<h2>Mein Account</h2>
+	<br><b>Name: </b>${account.name}
+	<br><b>Vorname: </b>${account.vorname}
+	<br><b>Adresse: </b>${account.strasse} ${account.hnr} ${account.plz} ${account.stadt}
+	<br><b>Email: </b>${account.email}
+	<br>
 	
-		<div class="slider fade" align="center">
-			<div class="bildnummer">1 / 3</div>
-			<img src="Auto.jpg" style="width:800px;height:400px">
-			<div class="text">Welcome</div>
-		</div>	
-		<div class="slider fade" align="center" >
-			<div class="bildnummer">2 / 3</div>
-			<img src="welcome.jpg" style="width:1200px;max-height:400px" >
-			<div class="text">News,Angebote</div>
-		</div>	
-		<div class="slider fade" align="center">
-			<div class="bildnummer">3 / 3</div>
-			<img src="welcome.jpg" style="width:1200px;max-height:400px" >
-			<div class="text">News,Angebote</div>
-		</div>	
-		
-		<button class="prev" onclick="plusSlides(-1)">&#10094;</button>
-		<button class="next" onclick="plusSlides(1)">&#10095;</button>
-		
-  		
+	<!--modal vgl: https://www.w3schools.com/howto/tryit.asp?filename=tryhow_css_login_form_modal-->
+	<button onclick="document.getElementById('id01').style.display='block'" style="width:auto;" class="bearb">Account bearbeiten</button>
+	<div id="id01" class="modal">
+		<form method="post" class="modal-content animate" action="../../UpdateServlet">
+			 <c:choose>
+				<c:when test="${pwfalsch > 0}">
+					<br>
+					<a class = "rot">Passwörter stimmen nicht überein!</a>
+				</c:when>
+			</c:choose>
+			<h1>Account bearbeiten</h1>
+		    <label>Name <br></label>
+		    <input type="text" name="name" id="name" value="${account.name}" required autofocus>
+		    <br>
+		    <label>Vorname</label> <br>
+		    <input type="text" name="vorname" value="${account.vorname}" required>
+		    <br>
+		    <label>Email</label> <br>
+		    <input type="email"  name="email" value="${account.email}" required>
+		    <br>
+		    <label>Straße </label> <br>
+		    <input type="text" name="strasse" value="${account.strasse}" required>
+		    <br>
+		    <label>Hausnummer</label>
+		    <br>
+		    <input type="text" name="hausnummer" value="${account.hnr}" required>
+		    <br>
+		    <label>Stadt </label><br>
+		    <input type="text" name="stadt" value="${account.stadt}" required>
+		    <br>
+		    <label>Postleitzahl </label>
+		    <br>
+		    <input type="text" name="postleitzahl" value="${account.plz}" required>
+			<br>
+		    <label>Passwort </label>
+		    <br>
+		    <input type="password" name="passwort" value="${account.passwort}" onkeyup="check()" required>
+			<br>
+		    <label>Wiederhole Passwort</label> <br>
+		    <input type="password" name="passwort2" value="${account.passwort2}" onkeyup="check()" required>
+		    <span id="message"></span>
+			<br>
+			<br>
+		    
+		    <button type="submit" class="account" onclick="document.getElementById('id01').style.display='none'">Aktualisieren!</button> 
+		    <br>
+		</form>
 	</div>
-	<div style="text-align:center">
-  <span class="dot" onclick="currentSlide(1)"></span> 
-  <span class="dot" onclick="currentSlide(2)"></span> 
-  <span class="dot" onclick="currentSlide(3)"></span> 
-</div>
-
-<h2 class=beliebteArtikel role="heading">
-    <span>Aktuelle Autos</span>
-   		</h2>
-   		<hr/>
-   		<figure>
-   		
-   		<figure class="bild" id="neu" width="250" height="250">
-   			<img src="bmw.jpg" href="CarView.html" width="250" height="170" alt="Auto1"><br>
-   			<a>${neu.bezeichnung}</a> 
-   		</figure>
-   		
-   		<figure class="bild">
-   			<img src="bmw.jpg" href="CarView.html" width="250" height="170" alt="Auto2"><br>
-   			<a href="CarView.html" >Auto2</a> 
-   		</figure>
-   		<figure class="bild">
-   			<img src="bmw.jpg" href="CarView.html" width="250" height="170" alt="Auto3"><br>
-   			<a href="CarView.html" >Auto3</a>  
-   		</figure>
-	</figure>
+	<button onclick="document.getElementById('id02').style.display='block'" style="width:auto;" class="delet">Account löschen</button>
+	<div id="id02" class="modal">	
+		<form method="post" class="modal-content animate" action="../../DeleteServlet">
+			<a>Account wirklich löschen?</a><br>
+			<button type="submit" class="delete" >Ja</button>
+			<button type="button" onclick="document.getElementById('id02').style.display='none'" class="cancel">Nein</button>
+		</form>	
+	</div>
+	</div>
 	
-	<br>
-
-	<footer class="foot">
-	<br>
+	<div class="konto">
+	<h1>Meine Autos</h1>
+	<c:forEach items="${autos}" var="a">
+		<br>
+		<img src="../../BildServlet?id=${a.id}" width="75" height="75" alt="${a.modell}">
+		<a href="../../AutoServlet?param1=${a.id}">${a.modell}</a>
+		<br>
+		<hr>
+	</c:forEach>
 	
-	Autovermietung
-	<br>
-	<a href="Login.jsp">Login</a>
-	<br>
-	<a href="NewAccount.jsp">Registrieren</a>
-	<br>
-	</footer>
-
-	<script>
+	</div>
 	
-	
-		var slideIndex = 1;
-		showSlides(slideIndex);
-		
-		function plusSlides(n) {
-		  showSlides(slideIndex += n);
-		}
-		
-		function currentSlide(n) {
-		  showSlides(slideIndex = n);
-		}
-		
-		function showSlides(n) {
-		  var i;
-		  var slides = document.getElementsByClassName("slider");
-		  var dots = document.getElementsByClassName("dot");
-		  if (n > slides.length) {slideIndex = 1}    
-		  if (n < 1) {slideIndex = slides.length}
-		  for (i = 0; i < slides.length; i++) {
-		      slides[i].style.display = "none";  
-		  }
-		  slides[slideIndex-1].style.display = "block";  
-		}
-		
-		function getneu(){
-			var xmlhttp = new HXMLHttpRequest();
-			xmlhttp.onreadystatechange = function(){
-				console.log("Callback reached with status " + xmlhttp.status + " and ready State " + xmlhttp.readyState);
-				if(xmlhttp.readyState == 4 && xmlhttp.status == 200){
-					document.getElementById("neu").innerHTML = xmlhttp.responseText;
-				}
-			}
-			xmlhttp.open("GET", "neuServlet", true);
-			xmlhttp.send();
-		}
-
-	</script>
 </body>
+<script>
+	// Get the modal
+	var modal = document.getElementById('id01');
+		
+	// When the user clicks anywhere outside of the modal, close it
+	window.onclick = function(event) {
+		if (event.target == modal) {
+		    modal.style.display = "none";
+		}
+	}
+		
+	function close(){
+		modal.style.display = "none";
+	}
+
+</script>
 </html>
