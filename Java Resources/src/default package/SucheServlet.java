@@ -1,8 +1,6 @@
 /** Peter */
 
 import java.io.IOException;
-import java.io.InputStream;
-import java.sql.Blob;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -11,7 +9,6 @@ import java.util.ArrayList;
 import javax.annotation.Resource;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
-import javax.servlet.ServletOutputStream;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -50,12 +47,13 @@ public class SucheServlet extends HttpServlet {
                    /**
                    *"SELECT * FROM bucher WHERE isbn LIKE %" +isbn + "% OR titel LIKE %" + titel +"%"
                    */
-                   PreparedStatement p = con.prepareStatement("SELECT * FROM autos WHERE bezeichnung LIKE ?")){
+                   PreparedStatement p = con.prepareStatement("SELECT * FROM autos WHERE modell LIKE ?")){
                    p.setString(1, "%"+request.getParameter("suche1")+"%");
                    rs = p.executeQuery();
                    while(rs.next()){
                            Auto auto = new Auto();
-                           auto.setBezeichnung(rs.getString("bezeichnung"));
+                           auto.setModell(rs.getString("modell"));
+                           auto.setMarke(rs.getString("marke"));
                            auto.setId(rs.getInt("id"));
                            
                            autos.add(auto);
