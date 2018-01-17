@@ -18,33 +18,12 @@ public class Auto implements Serializable{
     private int mieterid;    
     private String Standort;
     private byte[] bild;
-    
-    
     public int getId() {
         return id;
     }
     public void setId(int id) {
         this.id = id;
     }
-    public String getStandorte() {
-        return Standort;
-    }
-    public void setStandort(String standort) {
-        Standort = standort;
-    }
-    public int getMieterid() {
-        return mieterid;
-    }
-    public void setMieter(int mieterid) {
-        this.mieterid = mieterid;
-    }
-    public int getVermieterid() {
-        return vermieterid;
-    }
-    public void setVermieter(int vermieterid) {
-        this.vermieterid = vermieterid;
-    }
-    
     public String getMarke() {
         return marke;
     }
@@ -56,13 +35,6 @@ public class Auto implements Serializable{
     }
     public void setModell(String modell) {
         this.modell = modell;
-    }
-    public String getKarroserie() {
-        return karosserie;
-    }
-    
-    public void setKarroserie(String karroserie) {
-        this.karosserie = karroserie;
     }
     public String getKraftstoff() {
         return kraftstoff;
@@ -82,8 +54,6 @@ public class Auto implements Serializable{
     public void setPs(String ps) {
         this.ps = ps;
     }
-    
-
     public String getKarosserie() {
         return karosserie;
     }
@@ -108,22 +78,36 @@ public class Auto implements Serializable{
     public void setSitzplaetze(int sitzplaetze) {
         this.sitzplaetze = sitzplaetze;
     }
-    public String getStandort() {
-        return Standort;
-    }
     public double getPreis() {
         return preis;
     }
     public void setPreis(double preis) {
         this.preis = preis;
     }
+    public int getVermieterid() {
+        return vermieterid;
+    }
+    public void setVermieterid(int vermieterid) {
+        this.vermieterid = vermieterid;
+    }
+    public int getMieterid() {
+        return mieterid;
+    }
+    public void setMieterid(int mieterid) {
+        this.mieterid = mieterid;
+    }
+    public String getStandort() {
+        return Standort;
+    }
+    public void setStandort(String standort) {
+        Standort = standort;
+    }
     public byte[] getBild() {
         return bild;
     }
-    public void setBild(byte[] bs) {
-        this.bild = bs;
+    public void setBild(byte[] bild) {
+        this.bild = bild;
     }
-
     
     
 }
