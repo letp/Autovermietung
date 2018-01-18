@@ -2,10 +2,10 @@
 
 import java.io.Serializable;
 
-@SuppressWarnings("serial")
 public class Account implements Serializable{
     
-    private long id;
+    private static final long serialVersionUID = 1L;
+    private int id;
     private String name;
     private String vorname;
     private String passwort;
@@ -15,7 +15,6 @@ public class Account implements Serializable{
     private String email;
     private String stadt;
     private String plz;
-    
     
     public String getName() {
         return name;
@@ -71,10 +70,11 @@ public class Account implements Serializable{
     public void setPasswort2(String passwort2) {
         this.passwort2 = passwort2;
     }
-    public long getId() {
+    public int getId() {
         return id;
     }
-    public void setId(long id) {
+    public void setId(int id) {
         this.id = id;
     }
 }
+
