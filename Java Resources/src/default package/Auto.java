@@ -11,13 +11,14 @@ public class Auto implements Serializable{
     private String ps;
     private String karosserie;
     private String erstzulassung;
-    private int tueren;
-    private int sitzplaetze;
-    private double preis;
+    private String tueren;
+    private String sitzplaetze;
+    private String preis;
     private int vermieterid;
     private int mieterid;    
     private String Standort;
     private byte[] bild;
+    
     public int getId() {
         return id;
     }
@@ -66,22 +67,22 @@ public class Auto implements Serializable{
     public void setErstzulassung(String erstzulassung) {
         this.erstzulassung = erstzulassung;
     }
-    public int getTueren() {
+    public String getTueren() {
         return tueren;
     }
-    public void setTueren(int tueren) {
+    public void setTueren(String tueren) {
         this.tueren = tueren;
     }
-    public int getSitzplaetze() {
+    public String getSitzplaetze() {
         return sitzplaetze;
     }
-    public void setSitzplaetze(int sitzplaetze) {
+    public void setSitzplaetze(String sitzplaetze) {
         this.sitzplaetze = sitzplaetze;
     }
-    public double getPreis() {
+    public String getPreis() {
         return preis;
     }
-    public void setPreis(double preis) {
+    public void setPreis(String preis) {
         this.preis = preis;
     }
     public int getVermieterid() {
