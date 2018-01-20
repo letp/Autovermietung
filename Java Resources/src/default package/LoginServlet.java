@@ -65,7 +65,9 @@ public class LoginServlet extends HttpServlet {
 	                   session.setAttribute("account", form);
 	                   session.setAttribute("logged", 1);
 	                   ArrayList<Auto> autos = findAutos(form.getId());
+	                   ArrayList<Auto> mietautos = findMietAutos(form.getId());
 	                   session.setAttribute("autos", autos);
+	                   session.setAttribute("mietautos", mietautos);
 	                   final RequestDispatcher dispatcher = request.getRequestDispatcher("home/html/Konto.jsp");
 	                   dispatcher.forward(request, response);
 	               }else{
@@ -101,6 +103,27 @@ public class LoginServlet extends HttpServlet {
          }
         return autos;
 	}
+	
+	   public ArrayList<Auto> findMietAutos(int id) throws ServletException{
+	        ResultSet rs = null;
+	        ArrayList<Auto> autos = new ArrayList<Auto>();
+	        try(Connection con = ds.getConnection();
+	                PreparedStatement p = con.prepareStatement("SELECT * FROM autos INNER JOIN accounts On autos.mieterID = accounts.id WHERE accounts.id = ?")){
+	                p.setInt(1, id);
+	                rs = p.executeQuery();
+	                while(rs.next()){
+	                        Auto auto = new Auto();
+	                        auto.setModell(rs.getString("modell"));
+	                        auto.setId(rs.getInt("id"));
+	                        auto.setMarke(rs.getString("marke"));
+	                        autos.add(auto);
+	                }
+	         } catch (Exception ex) {
+	              // TODO Auto-generated catch block
+	              throw new ServletException(ex.getMessage());
+	         }
+	        return autos;
+	    }
 	
 	 
 	/**
