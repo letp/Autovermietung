@@ -81,9 +81,21 @@
 	</div>
 	</div>
 	
-	<div class="konto">
+	<div class="auto">
 	<h1>Meine Autos</h1>
 	<c:forEach items="${autos}" var="a">
+		<br>
+		<img src="../../BildServlet?id=${a.id}" width="75" height="75" alt="${a.modell}">
+		<a href="../../AutoServlet?param1=${a.id}">${a.modell}</a>
+		<br>
+		<hr>
+	</c:forEach>
+	
+	</div>
+	
+	<div class="auto">
+	<h1>Meine gemieteten Autos</h1>
+	<c:forEach items="${mietautos}" var="a">
 		<br>
 		<img src="../../BildServlet?id=${a.id}" width="75" height="75" alt="${a.modell}">
 		<a href="../../AutoServlet?param1=${a.id}">${a.modell}</a>
