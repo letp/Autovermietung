@@ -1,9 +1,9 @@
+
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Enumeration;
 
 import javax.annotation.Resource;
 import javax.servlet.RequestDispatcher;
@@ -12,23 +12,25 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.sql.DataSource;
 
 /**
- * Servlet implementation class AutoSuchenServlet
+ * Servlet implementation class BuchenServlet
  */
-@WebServlet("/AutoSuchenServlet")
-public class AutoSuchenServlet extends HttpServlet {
+@WebServlet("/BuchenServlet")
+public class BuchenServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	@Resource(lookup = "jdbc/MyTHIPool")
-	private DataSource ds;
+	DataSource ds;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
-	public AutoSuchenServlet() {
+	public BuchenServlet() {
 		super();
+		// TODO Auto-generated constructor stub
 	}
 
 	/**
@@ -37,36 +39,37 @@ public class AutoSuchenServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		List<Auto> autos = sucheAktuelleAutos();
 		
-		request.setAttribute("autos", autos);
-		RequestDispatcher dispatcher = request.getRequestDispatcher("html/AutoListeJson.jsp");
+		String id = request.getParameter("id");
+		HttpSession session = request.getSession();
+		Enumeration<String> sessionNames = session.getAttributeNames();
+		
+		while (sessionNames.hasMoreElements()) {
+		    String param = sessionNames.nextElement();
+		    if(param.equals("account")) {
+		    	Account account = (Account) session.getAttribute("account");
+		    	bucheAuto(id, account.getId());
+				RequestDispatcher dispatcher = request.getRequestDispatcher("html/Konto.jsp");
+				dispatcher.forward(request, response);
+		    }
+		}
+		
+		RequestDispatcher dispatcher = request.getRequestDispatcher("html/Login.jsp");
 		dispatcher.forward(request, response);
 	}
 
-	private List<Auto> sucheAktuelleAutos() throws ServletException {
-		List<Auto> autos = new ArrayList<Auto>();
+	private void bucheAuto(String autoid, int mieterid) throws ServletException {
 
-		// DB-Zugriff
 		try (Connection con = ds.getConnection();
-				PreparedStatement pstmt = con.prepareStatement("SELECT * FROM autos ORDER BY id DESC LIMIT 3")) {
+				PreparedStatement pstmt = con.prepareStatement("UPDATE autos SET mieterid = ? WHERE id = ? ")) {
 
-			try (ResultSet rs = pstmt.executeQuery()) {
+			pstmt.setInt(1, mieterid);
+			pstmt.setInt(2, Integer.parseInt(autoid));
+			pstmt.executeUpdate();
 
-				while (rs.next()) {
-					Auto auto = new Auto();
-
-					auto.setId(rs.getInt("id"));
-					auto.setMarke(rs.getString("marke"));
-					auto.setModell(rs.getString("modell"));
-
-					autos.add(auto);
-				} // while rs.next()
-			}
 		} catch (Exception ex) {
 			throw new ServletException(ex.getMessage());
 		}
-		return autos;
 	}
 
 	/**
@@ -78,4 +81,5 @@ public class AutoSuchenServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
+
 }

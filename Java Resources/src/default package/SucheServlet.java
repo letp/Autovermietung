@@ -62,7 +62,7 @@ public class SucheServlet extends HttpServlet {
                    session.setAttribute("autos", autos);
                    
                    session.setAttribute("suchanzahl", suchanzahl);
-                   final RequestDispatcher dispatcher = request.getRequestDispatcher("home/html/Suchergebnisse.jsp");
+                   final RequestDispatcher dispatcher = request.getRequestDispatcher("html/Suchergebnisse.jsp");
                    dispatcher.forward(request, response);
             } catch (Exception ex) {
                  // TODO Auto-generated catch block

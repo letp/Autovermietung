@@ -60,7 +60,7 @@ public class CarViewServlet extends HttpServlet {
 		Auto auto = new Auto();
 		// DB-Zugriff
 		try (Connection con = ds.getConnection();
-			 PreparedStatement pstmt = con.prepareStatement("SELECT * FROM thidb.auto WHERE Fahrzeug_ID LIKE ? ")) {
+			 PreparedStatement pstmt = con.prepareStatement("SELECT * FROM autos WHERE id LIKE ? ")) {
 
 			pstmt.setString(1, id);
 		
@@ -68,24 +68,46 @@ public class CarViewServlet extends HttpServlet {
 			
 				while (rs.next()) {
 			
-					int idDB = rs.getInt("Fahrzeug_ID");
+					int idDB = rs.getInt("id");
 					auto.setId(idDB);
 					
-					String markeDB = rs.getString("Marke");
+					String markeDB = rs.getString("marke");
 					auto.setMarke(markeDB);
 					
-					String modellDB = rs.getString("Modell");
+					String modellDB = rs.getString("modell");
 					auto.setModell(modellDB);
 					
-					String kraftstoff = rs.getString("Kraftstoff");
+					String kraftstoff = rs.getString("kraftstoff");
 					auto.setKraftstoff(kraftstoff);
 					
+					String getriebe = rs.getString("getriebe");
+					auto.setGetriebe(getriebe);
+					
+					String karosserie = rs.getString("karosserie");
+					auto.setKarosserie(karosserie);
+					
+					String erstzulassung = rs.getString("erstzulassung");
+					auto.setErstzulassung(erstzulassung);
+					
+					String ps = rs.getString("ps");
+					auto.setPs(ps);
+					
+					String tueren = rs.getString("tueren");
+					auto.setTueren(tueren);
+					
+					String sitzplaetze = rs.getString("sitzplaetze");
+					auto.setSitzplaetze(sitzplaetze);
+					
+					String preis = rs.getString("preis");
+					auto.setPreis(preis);
+					
+					String standort = rs.getString("standort");
+					auto.setStandort(standort);
 				} // while rs.next()
 			}
 		} catch (Exception ex) {
 			throw new ServletException(ex.getMessage());
 		}
-		
 		return auto;
 	}
 }

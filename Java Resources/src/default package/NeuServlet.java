@@ -1,4 +1,3 @@
-
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -54,7 +53,7 @@ public class NeuServlet extends HttpServlet {
                 }
                 
                 request.setAttribute("neu", autos);
-                final RequestDispatcher dispatcher = request.getRequestDispatcher("home/html/NeuJson.jsp");
+                final RequestDispatcher dispatcher = request.getRequestDispatcher("html/NeuJson.jsp");
                 dispatcher.forward(request, response);
                 
          } catch (Exception ex) {
