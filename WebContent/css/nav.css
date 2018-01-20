@@ -1,6 +1,39 @@
 /*Peter*/
 
-ul {
+       #suche1 {
+        	padding-top: 4px;
+        	padding-bottom: 4px;
+        	margin-top: 10px;
+        }
+        
+        #autoTabelle {
+        	float:left;
+        }
+        
+        #formSchnellsuche{
+        	position: fixed;
+       		left: 35%;
+        }
+        
+        label {
+        	font-size: 1.7em;
+        }
+        
+        #suchText{
+        	padding-top: 7px;
+        	padding-bottom: 7px;
+        	margin: 5px;
+        	width: 250px;
+        	font-size: 1.3em;
+        }
+        
+        td a{
+        	font-size: 15pt;
+			color: #757575;
+			text-decoration: none;
+        }
+
+		nav ul {
 		    list-style-type: none;
 		    margin: 0;
 		    padding: 0;
@@ -8,7 +41,7 @@ ul {
 		    background-color: #333;
 		}
 		
-		li {
+		nav li {
 		    float: left;
 		}
 		
@@ -24,17 +57,8 @@ ul {
 		    background-color: grey;
 		}
 		
-
-	
-		
 		.nav > li.right {
 		float: right;
-		}
-		
-		.suche{
-		margin-top: 7px;
-		height: 30px;
-		width: 75px;
 		}
 		
 		footer {
@@ -49,5 +73,19 @@ ul {
         .js_enabled #cookie-message {
             display: none;
         }
-
+        
+		#submit {
+	    background-color: gray;
+	    color: white;
+	    width: 100px;
+	    padding: 14px 20px;
+	    margin: 8px 0;
+	    border: none;
+	    border-radius: 4px;
+	    cursor: pointer;
+		}
+	
+		#submit:hover {
+	    opacity: 0.8;
+		}
 	

@@ -1,0 +1,53 @@
+@charset "ISO-8859-1";
+
+#hitlist table {
+   border: 1px solid #ddd;
+   width: 80%;
+   margin-bottom: 20px;
+   background: #f9f9f9;
+}
+
+table a:link, a:visited{
+	font-size: 20pt;
+	color: black;
+	text-decoration: none;
+	font-weight: bold;
+}
+
+table a:hover {
+	color: gray;
+	text-decoration: none;
+	font-weight: bold;
+}
+
+#preisAnzeige {
+	font-size: 18pt;
+	font-weight: bold;
+}
+
+#treffer {
+	font-size: 15pt;
+	color: black;
+	font-weight: bold;
+	margin-bottom: 40px;
+	margin-top: 60px;
+}
+
+#button {
+	   	background-color: gray;
+	    color: white;
+	    width: 100px;
+	    padding: 5px 10px;
+	    margin-top: 10px;
+	    border: none;
+	    border-radius: 4px;
+	    cursor: pointer;
+	}
+	
+	button:hover {
+	    background-color: #c0c0c0;
+	}
+	
+select{
+	width: 150px;
+}
