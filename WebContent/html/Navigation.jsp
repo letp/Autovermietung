@@ -12,9 +12,7 @@
 </head>
 <script>
 	document.body.className = document.body.className + " js_enabled";
-
 	function cookie() {
-
 		if (navigator.cookieEnabled == false) {
 			document.getElementById("cooki").innerHTML = "Bitte aktivieren Sie Cookies!";
 		}
@@ -31,7 +29,7 @@
 		<li><a href="AutoListe.jsp">Detailsuche</a></li>
 
 		<li>
-			<form method="post" action="../../SucheServlet">
+			<form method="post" action="../SucheServlet">
 				<input id="suche1" name="suche1" placeholder="Modellbezeichnung">
 				<button type="submit" id="suche" type="button">Suchen</button>
 			</form>
@@ -40,7 +38,7 @@
 
 		<c:choose>
 			<c:when test="${logged > 0}">
-				<li class="right"><a id="konto" href="../../LogoutServlet">Logout</a></li>
+				<li class="right"><a id="konto" href="../LogoutServlet">Logout</a></li>
 			</c:when>
 			<c:otherwise>
 				<li class="right"><a id="konto" href="Login.jsp">Login</a></li>

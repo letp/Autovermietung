@@ -7,7 +7,7 @@
 		{
 			"id":${auto.id},
 			"marke":"${auto.marke}",
-			"modell":"${auto.modell}",
+			"modell":"${auto.modell}"
 		}<c:if test="${not status.last}">,</c:if>
 	</c:forEach>
 ]

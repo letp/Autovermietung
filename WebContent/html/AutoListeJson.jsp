@@ -8,7 +8,12 @@
 			"id":${auto.id},
 			"marke":"${auto.marke}",
 			"modell":"${auto.modell}",
-			"kraftstoff":"${auto.kraftstoff}"
+			"kraftstoff":"${auto.kraftstoff}",
+			"getriebe":"${auto.getriebe}",
+			"ps":"${auto.ps}",
+			"karosserie":"${auto.karosserie}",
+			"preis":"${auto.preis}",
+			"standort":"${auto.standort}"
 		}<c:if test="${not status.last}">,</c:if>
 	</c:forEach>
 ]
