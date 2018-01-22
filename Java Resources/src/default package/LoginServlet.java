@@ -95,6 +95,11 @@ public class LoginServlet extends HttpServlet {
                         auto.setModell(rs.getString("modell"));
                         auto.setId(rs.getInt("id"));
                         auto.setMarke(rs.getString("marke"));
+			auto.setKraftstoff(rs.getString("kraftstoff"));
+			auto.setPs(rs.getString("ps"));
+			auto.setGetriebe(rs.getString("getriebe"));
+			auto.setStandort(rs.getString("standort"));
+			auto.setPreis(rs.getString("preis"));
                         autos.add(auto);
                 }
          } catch (Exception ex) {
@@ -116,6 +121,11 @@ public class LoginServlet extends HttpServlet {
 	                        auto.setModell(rs.getString("modell"));
 	                        auto.setId(rs.getInt("id"));
 	                        auto.setMarke(rs.getString("marke"));
+				auto.setKraftstoff(rs.getString("kraftstoff"));
+				auto.setPs(rs.getString("ps"));
+				auto.setGetriebe(rs.getString("getriebe"));
+				auto.setStandort(rs.getString("standort"));
+				auto.setPreis(rs.getString("preis"));
 	                        autos.add(auto);
 	                }
 	         } catch (Exception ex) {
