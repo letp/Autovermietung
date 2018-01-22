@@ -9,7 +9,23 @@
 <title>Insert title here</title>
 
 <link rel="stylesheet" type="text/css" href="../css/Konto.css">
+<link rel="stylesheet" type="text/css" href="AutoListe.css">
 
+<script>
+	// Get the modal
+	var modal = document.getElementById('id01');
+		
+	// When the user clicks anywhere outside of the modal, close it
+	window.onclick = function(event) {
+		if (event.target == modal) {
+		    modal.style.display = "none";
+		}
+	}
+		
+	function close(){
+		modal.style.display = "none";
+	}
+</script>
 </head>
 <body>
 <%@ include file="Navigation.jsp" %>
@@ -24,9 +40,9 @@
 	<br>
 	
 	<!--modal vgl: https://www.w3schools.com/howto/tryit.asp?filename=tryhow_css_login_form_modal-->
-	<button onclick="document.getElementById('id01').style.display='block'" style="width:auto;" class="bearb">Account bearbeiten</button>
+	<button onclick="document.getElementById('id01').style.display='block'" class="bearb">Account bearbeiten</button>
 	<div id="id01" class="modal">
-		<form method="post" class="modal-content animate" action="../../UpdateServlet">
+		<form method="post" class="modal-content animate" action="../UpdateServlet">
 			 <c:choose>
 				<c:when test="${pwfalsch > 0}">
 					<br>
@@ -59,10 +75,10 @@
 			<br>
 		    <label>Passwort </label>
 		    <br>
-		    <input type="password" name="passwort" value="${account.passwort}" onkeyup="check()" required>
+		    <input type="password" name="passwort" value="${account.passwort}" required>
 			<br>
 		    <label>Wiederhole Passwort</label> <br>
-		    <input type="password" name="passwort2" value="${account.passwort2}" onkeyup="check()" required>
+		    <input type="password" name="passwort2" value="${account.passwort2}" required>
 		    <span id="message"></span>
 			<br>
 			<br>
@@ -71,9 +87,9 @@
 		    <br>
 		</form>
 	</div>
-	<button onclick="document.getElementById('id02').style.display='block'" style="width:auto;" class="delet">Account löschen</button>
+	<button onclick="document.getElementById('id02').style.display='block'" class="delet">Account löschen</button>
 	<div id="id02" class="modal">	
-		<form method="post" class="modal-content animate" action="../../DeleteServlet">
+		<form method="post" class="modal-content animate" action="../DeleteServlet">
 			<a>Account wirklich löschen?</a><br>
 			<button type="submit" class="delete" >Ja</button>
 			<button type="button" onclick="document.getElementById('id02').style.display='none'" class="cancel">Nein</button>
@@ -83,43 +99,66 @@
 	
 	<div class="auto">
 	<h1>Meine Autos</h1>
-	<c:forEach items="${autos}" var="a">
-		<br>
-		<img src="../../BildServlet?id=${a.id}" width="75" height="75" alt="${a.modell}">
-		<a href="../../AutoServlet?param1=${a.id}">${a.modell}</a>
-		<br>
-		<hr>
-	</c:forEach>
+		<c:forEach items="${autos}" var="a">
+				<table>
+					<tbody>
+
+						<tr>
+							<td rowspan="3"><img src="../BildServlet?id=${a.id}"
+								width="300" height="200"></td>
+							<td colspan="3"><a href="../CarViewServlet?id=${a.id}">${a.marke}
+									${a.modell}</a></td>
+						</tr>
+						<tr>
+							<td>Kraftstoff: ${a.kraftstoff}</td>
+							<td>Leistung: ${a.ps} PS</td>
+							<td></td>
+						</tr>
+						<tr>
+							<td>Getriebe: ${a.getriebe}</td>
+							<td>Standort: ${a.standort}</td>
+							<td>
+								<div id="preisAnzeige">Preis: ${a.preis} Euro/Tag</div>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+				<hr>
+			</c:forEach>
 	
 	</div>
 	
 	<div class="auto">
 	<h1>Meine gemieteten Autos</h1>
 	<c:forEach items="${mietautos}" var="a">
-		<br>
-		<img src="../../BildServlet?id=${a.id}" width="75" height="75" alt="${a.modell}">
-		<a href="../../AutoServlet?param1=${a.id}">${a.modell}</a>
-		<br>
-		<hr>
-	</c:forEach>
+				<table>
+					<tbody>
+
+						<tr>
+							<td rowspan="3"><img src="../BildServlet?id=${a.id}"
+								width="300" height="200"></td>
+							<td colspan="3"><a href="../CarViewServlet?id=${a.id}">${a.marke}
+									${a.modell}</a></td>
+						</tr>
+						<tr>
+							<td>Kraftstoff: ${a.kraftstoff}</td>
+							<td>Leistung: ${a.ps} PS</td>
+							<td></td>
+						</tr>
+						<tr>
+							<td>Getriebe: ${a.getriebe}</td>
+							<td>Standort: ${a.standort}</td>
+							<td>
+								<div id="preisAnzeige">Preis: ${a.preis} Euro/Tag</div>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+				<hr>
+			</c:forEach>
 	
 	</div>
 	
 </body>
-<script>
-	// Get the modal
-	var modal = document.getElementById('id01');
-		
-	// When the user clicks anywhere outside of the modal, close it
-	window.onclick = function(event) {
-		if (event.target == modal) {
-		    modal.style.display = "none";
-		}
-	}
-		
-	function close(){
-		modal.style.display = "none";
-	}
 
-</script>
 </html>
