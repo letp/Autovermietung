@@ -35,6 +35,12 @@
 							ausgabe += "</td></tr>";
 							ausgabe += "</tbody></table>";
 							ausgabe += "</div>";
+							
+							ausgabe += "<div class=\"slider fade\"id=\"autoTabelle\" align=\"center\">";
+							ausgabe += "<div class=\"bildnummer\">"+i+"/"+autoListe.length+ "</div>";
+							ausgabe += "<img src=\"../../BildServlet?id=" + autoListe[i].id + "\" width=\"200\" height=\"100\">";
+							ausgabe += "<div class=\"text\" href=\"../../CarViewServlet?id=" + autoListe[i].id + "\">" + autoListe[i].marke + " " + autoListe[i].modell + "</div>";	
+						}
 						}
 						document.getElementById("letzteAutos").innerHTML = ausgabe;		
 					}
