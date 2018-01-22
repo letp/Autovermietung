@@ -5,37 +5,63 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Auto vermieten</title>
+
+<link rel="stylesheet" type="text/css" href="../css/Vermieten.css">
 </head>
 <body>
 <%@ include file="Navigation.jsp" %>
-<form method="post" action="../../VermietenServlet" enctype="multipart/form-data">
+<form method="post" id="form" action="../VermietenServlet" enctype="multipart/form-data">
 	    
 	<h1>Auto anbieten</h1>
 	
 	<c:choose>
 		<c:when test="${logged > 0}">
 			<label>Marke <br></label>
-		    <input type="text" name="marke" id="name" required autofocus>
+		    <select name="marke" required>
+		    	<option>Audi</option>
+		    	<option>BMW</option>
+		    	<option>Mercedes-Benz</option>   
+		    	<option>Volkswagen</option>       
+		    </select>
 		    <br>
 		    <label>Bezeichnung</label> <br>
 		    <input type="text" name="bezeichnung" required>
 		    <br>
 		    <label>Karosserie</label> <br>
-		    <input type="text"  name="karosserie" required>
+		    <select name="karosserie" required>
+		    	<option>Limousine</option>
+		    	<option>Kombi</option>
+		    	<option>Cabrio</option>   
+		    	<option>Van</option>   
+		    	<option>Geländewagen</option>    
+		    	<option>Sportwagen</option>  
+		    	<option>Transporter</option>       
+		    </select>
 		    <br>
 		    <label>Erstzulassung</label> <br>
-		    <input type="text"  name="erst" required>
+		    <input type="Number"  name="erst" required>
 		    <br>
 		    <label>Türen</label><br>
-		    <input type="Number" name="tueren" required>
+		    <select name="tueren" required>
+		    	<option>3</option>
+		    	<option>5</option>    
+		    </select>
 		    <br>
 		    <label>Sitzplätze</label><br>
-		    <input type="Number" name="sitzplaetze" required>
+		   	  <select name="sitzplaetze" required>
+		    	<option>2</option>
+		    	<option>3</option>    
+		    	<option>4</option> 
+		    	<option>5</option> 
+		    	<option>6</option> 
+		    	<option>7</option> 
+		    </select>
 		    <br>
 		    <label>Standort</label><br>
 		    <input type="text" name="standort" required>
 		    <br>
-		    <label>Kraftstoff</label> <br>
+		    <label>Kraftstoff</label>
+		    <br>
 		    <select name="kraftstoff">
 		    	<option>Benzin</option>
 		    	<option>Diesel</option>    
@@ -54,7 +80,7 @@
 			<label>Bild</label>
 			<input type="file" name="image" id="image" accept="image/*"  required>
 		    <br>
-		    <label>Preis</label><br>
+		    <label>Preis pro Tag</label><br>
 		    <input type="Number" name="preis" required>
 		    <br>
 		    <button type="submit" id="newcar" type="button">Auto anbieten!</button> 
