@@ -1,7 +1,7 @@
 <!-- Peter -->
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 <head>
 <base href="${pageContext.request.requestURI}" />
@@ -25,6 +25,20 @@
 	function close(){
 		modal.style.display = "none";
 	}
+	
+	function openmodal(){
+		document.getElementById('id01').style.display='block'
+	}
+	function openmodal2(){
+		document.getElementById('id02').style.display='block'
+	}
+	
+	function closeModal1(){
+		document.getElementById('id01').style.display='none'
+	}
+	function closeModal2(){
+		document.getElementById('id02').style.display='none'
+	}
 </script>
 </head>
 <body>
@@ -40,7 +54,7 @@
 	<br>
 	
 	<!--modal vgl: https://www.w3schools.com/howto/tryit.asp?filename=tryhow_css_login_form_modal-->
-	<button onclick="document.getElementById('id01').style.display='block'" class="bearb">Account bearbeiten</button>
+	<button onclick="openmodal()" class="bearb">Account bearbeiten</button>
 	<div id="id01" class="modal">
 		<form method="post" class="modal-content animate" action="../UpdateServlet">
 			 <c:choose>
@@ -83,22 +97,23 @@
 			<br>
 			<br>
 		    
-		    <button type="submit" class="account" onclick="document.getElementById('id01').style.display='none'">Aktualisieren!</button> 
+		    <button type="submit" class="account" onclick="closeModal1()">Aktualisieren!</button> 
 		    <br>
 		</form>
 	</div>
-	<button onclick="document.getElementById('id02').style.display='block'" class="delet">Account löschen</button>
+	<button onclick="openmodal2()" class="delet">Account löschen</button>
 	<div id="id02" class="modal">	
 		<form method="post" class="modal-content animate" action="../DeleteServlet">
 			<a>Account wirklich löschen?</a><br>
 			<button type="submit" class="delete" >Ja</button>
-			<button type="button" onclick="document.getElementById('id02').style.display='none'" class="cancel">Nein</button>
+			<button type="button" onclick="closeModal2()" class="cancel">Nein</button>
 		</form>	
 	</div>
 	</div>
 	
 	<div class="auto">
 	<h1>Meine Autos</h1>
+	<hr>
 		<c:forEach items="${autos}" var="a">
 				<table>
 					<tbody>
@@ -117,9 +132,9 @@
 						<tr>
 							<td>Getriebe: ${a.getriebe}</td>
 							<td>Standort: ${a.standort}</td>
-							<td>
-								<div id="preisAnzeige">Preis: ${a.preis} Euro/Tag</div>
-							</td>
+						</tr>
+						<tr>
+							<td>Preis: ${a.preis} Euro/Tag</td>
 						</tr>
 					</tbody>
 				</table>
@@ -130,12 +145,13 @@
 	
 	<div class="auto">
 	<h1>Meine gemieteten Autos</h1>
+	<hr>
 	<c:forEach items="${mietautos}" var="a">
 				<table>
 					<tbody>
 
 						<tr>
-							<td rowspan="3"><img src="../BildServlet?id=${a.id}"
+							<td rowspan="4"><img src="../BildServlet?id=${a.id}"
 								width="300" height="200"></td>
 							<td colspan="3"><a href="../CarViewServlet?id=${a.id}">${a.marke}
 									${a.modell}</a></td>
@@ -148,9 +164,9 @@
 						<tr>
 							<td>Getriebe: ${a.getriebe}</td>
 							<td>Standort: ${a.standort}</td>
-							<td>
-								<div id="preisAnzeige">Preis: ${a.preis} Euro/Tag</div>
-							</td>
+						</tr>
+						<tr>
+							<td>Preis: ${a.preis} Euro/Tag</td>
 						</tr>
 					</tbody>
 				</table>
